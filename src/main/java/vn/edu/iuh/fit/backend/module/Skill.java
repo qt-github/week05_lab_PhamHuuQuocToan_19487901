@@ -1,51 +1,38 @@
-package vn.edu.iuh.fit.module;
+package vn.edu.iuh.fit.backend.module;
 
 import jakarta.persistence.*;
 import lombok.*;
 import org.hibernate.annotations.JdbcTypeCode;
 import org.hibernate.proxy.HibernateProxy;
 import org.hibernate.type.SqlTypes;
+import vn.edu.iuh.fit.backend.enums.SkillType;
 
 import java.util.Objects;
-import java.util.Set;
 
-@AllArgsConstructor
-@NoArgsConstructor
 @Getter
 @Setter
 @ToString
+@RequiredArgsConstructor
 @Entity
-@Table(name = "company")
-public class Company {
+@Table(name = "skill")
+public class Skill {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "comp_id", nullable = false, length = 20)
+    @Column(name = "skill_id", nullable = false, length = 20)
     @JdbcTypeCode(SqlTypes.BIGINT)
     private Long id;
 
-    @Column(name = "about", length = 2000)
+    @Column(name = "skill_description")
     @JdbcTypeCode(SqlTypes.NVARCHAR)
-    private String about;
+    private String skillDescription;
 
-    @Column(name = "email")
-    @JdbcTypeCode(SqlTypes.VARCHAR)
-    private String email;
-
-    @Column(name = "comp_name")
+    @Column(name = "skill_name")
     @JdbcTypeCode(SqlTypes.NVARCHAR)
-    private String compName;
+    private String skillName;
 
-    @Column(name = "phone")
-    @JdbcTypeCode(SqlTypes.VARCHAR)
-    private String phone;
-
-    @Column(name = "web_url")
-    @JdbcTypeCode(SqlTypes.VARCHAR)
-    private String webUrl;
-
-    @OneToMany(mappedBy = "company")
-    @ToString.Exclude
-    private Set<Address> addresses;
+    @Enumerated
+    @Column(name = "skill_type")
+    private SkillType type;
 
     @Override
     public final boolean equals(Object o) {
@@ -54,8 +41,8 @@ public class Company {
         Class<?> oEffectiveClass = o instanceof HibernateProxy ? ((HibernateProxy) o).getHibernateLazyInitializer().getPersistentClass() : o.getClass();
         Class<?> thisEffectiveClass = this instanceof HibernateProxy ? ((HibernateProxy) this).getHibernateLazyInitializer().getPersistentClass() : this.getClass();
         if (thisEffectiveClass != oEffectiveClass) return false;
-        Company company = (Company) o;
-        return getId() != null && Objects.equals(getId(), company.getId());
+        Skill skill = (Skill) o;
+        return getId() != null && Objects.equals(getId(), skill.getId());
     }
 
     @Override

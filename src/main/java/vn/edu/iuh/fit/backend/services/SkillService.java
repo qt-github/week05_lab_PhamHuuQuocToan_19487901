@@ -1,6 +1,6 @@
-package vn.edu.iuh.fit.services;
+package vn.edu.iuh.fit.backend.services;
 
-import vn.edu.iuh.fit.module.Skill;
+import vn.edu.iuh.fit.backend.module.Skill;
 
 import java.util.List;
 import java.util.Optional;

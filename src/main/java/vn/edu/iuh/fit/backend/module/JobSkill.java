@@ -1,12 +1,10 @@
-package vn.edu.iuh.fit.module;
+package vn.edu.iuh.fit.backend.module;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Embeddable;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.ManyToOne;
+import jakarta.persistence.*;
 import lombok.*;
 import org.hibernate.annotations.JdbcTypeCode;
 import org.hibernate.type.SqlTypes;
+import vn.edu.iuh.fit.backend.enums.SkillLevel;
 
 @AllArgsConstructor
 @NoArgsConstructor
@@ -19,10 +17,6 @@ public class JobSkill {
     @JdbcTypeCode(SqlTypes.NVARCHAR)
     private String moreInfos;
 
-    @Column(name = "skill_level", length = 4)
-    @JdbcTypeCode(SqlTypes.TINYINT)
-    private int skillLevel;
-
     @ManyToOne
     @JoinColumn(name = "job_id")
     private Job job;
@@ -30,5 +24,9 @@ public class JobSkill {
     @ManyToOne
     @JoinColumn(name = "skill_id")
     private Skill skill;
+
+    @Enumerated
+    @Column(name = "skill_level")
+    private SkillLevel skillLevel;
 
 }

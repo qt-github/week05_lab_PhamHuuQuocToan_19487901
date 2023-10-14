@@ -1,4 +1,4 @@
-package vn.edu.iuh.fit.module;
+package vn.edu.iuh.fit.backend.module;
 
 import jakarta.persistence.*;
 import lombok.*;
@@ -7,48 +7,45 @@ import org.hibernate.proxy.HibernateProxy;
 import org.hibernate.type.SqlTypes;
 
 import java.util.Objects;
+import java.util.Set;
 
+@AllArgsConstructor
+@NoArgsConstructor
 @Getter
 @Setter
 @ToString
-@NoArgsConstructor
-@AllArgsConstructor
 @Entity
-@Table(name = "address")
-public class Address {
+@Table(name = "company")
+public class Company {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id", nullable = false, length = 20)
+    @Column(name = "comp_id", nullable = false, length = 20)
     @JdbcTypeCode(SqlTypes.BIGINT)
     private Long id;
 
-    @Column(name = "street", length = 150)
+    @Column(name = "about", length = 2000)
     @JdbcTypeCode(SqlTypes.NVARCHAR)
-    private String street;
+    private String about;
 
-    @Column(name = "city", length = 50)
+    @Column(name = "email")
+    @JdbcTypeCode(SqlTypes.VARCHAR)
+    private String email;
+
+    @Column(name = "comp_name")
     @JdbcTypeCode(SqlTypes.NVARCHAR)
-    private String city;
+    private String compName;
 
-    @Column(name = "country", length = 6)
-    @JdbcTypeCode(SqlTypes.SMALLINT)
-    private int country;
-
-    @Column(name = "number", length = 20)
+    @Column(name = "phone")
     @JdbcTypeCode(SqlTypes.VARCHAR)
-    private String number;
+    private String phone;
 
-    @Column(name = "zipcode", length = 7)
+    @Column(name = "web_url")
     @JdbcTypeCode(SqlTypes.VARCHAR)
-    private String zipcode;
+    private String webUrl;
 
-    @ManyToOne
-    @JoinColumn(name = "candidate_id")
-    private Candidate candidate;
-
-    @ManyToOne
-    @JoinColumn(name = "comp_id")
-    private Company company;
+    @OneToMany(mappedBy = "company")
+    @ToString.Exclude
+    private Set<Address> addresses;
 
     @Override
     public final boolean equals(Object o) {
@@ -57,8 +54,8 @@ public class Address {
         Class<?> oEffectiveClass = o instanceof HibernateProxy ? ((HibernateProxy) o).getHibernateLazyInitializer().getPersistentClass() : o.getClass();
         Class<?> thisEffectiveClass = this instanceof HibernateProxy ? ((HibernateProxy) this).getHibernateLazyInitializer().getPersistentClass() : this.getClass();
         if (thisEffectiveClass != oEffectiveClass) return false;
-        Address address = (Address) o;
-        return getId() != null && Objects.equals(getId(), address.getId());
+        Company company = (Company) o;
+        return getId() != null && Objects.equals(getId(), company.getId());
     }
 
     @Override

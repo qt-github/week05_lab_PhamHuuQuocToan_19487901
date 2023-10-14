@@ -1,37 +1,54 @@
-package vn.edu.iuh.fit.module;
+package vn.edu.iuh.fit.backend.module;
 
 import jakarta.persistence.*;
-import lombok.*;
+import lombok.Getter;
+import lombok.Setter;
 import org.hibernate.annotations.JdbcTypeCode;
 import org.hibernate.proxy.HibernateProxy;
 import org.hibernate.type.SqlTypes;
 
+import java.sql.Date;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 
 @Getter
 @Setter
-@ToString
-@RequiredArgsConstructor
 @Entity
-@Table(name = "job")
-public class Job {
+@Table(name = "experience")
+public class Experience {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "job_id", nullable = false, length = 20)
-    @JdbcTypeCode(SqlTypes.BIGINT)
+    @Column(name = "exp_id", nullable = false)
     private Long id;
 
-    @Column(name = "job_description", length = 20000)
-    @JdbcTypeCode(SqlTypes.NVARCHAR)
-    private String jobDescription;
+    @Column(name = "from_date")
+    @JdbcTypeCode(SqlTypes.DATE)
+    private Date fromDate;
 
-    @Column(name = "job_name")
+    @Column(name = "to_date")
+    @JdbcTypeCode(SqlTypes.DATE)
+    private Date toDate;
+
+    @Column(name = "role", length = 100)
     @JdbcTypeCode(SqlTypes.NVARCHAR)
-    private String jobName;
+    private String role;
+
+    @Column(name = "company_name", length = 120)
+    @JdbcTypeCode(SqlTypes.NVARCHAR)
+    private String companyName;
+
+    @Column(name = "work_desc", length = 400)
+    @JdbcTypeCode(SqlTypes.NVARCHAR)
+    private String workDesc;
 
     @ManyToOne
-    @JoinColumn(name = "comp_id")
-    private Company company;
+    @JoinColumn(name = "candidate_id")
+    private Candidate candidate;
+
+    @ElementCollection
+    @CollectionTable(name = "experience_candidateSkill", joinColumns = @JoinColumn(name = "owner_id"))
+    private List<CandidateSkill> candidateSkill = new ArrayList<>();
 
     @Override
     public final boolean equals(Object o) {
@@ -40,8 +57,8 @@ public class Job {
         Class<?> oEffectiveClass = o instanceof HibernateProxy ? ((HibernateProxy) o).getHibernateLazyInitializer().getPersistentClass() : o.getClass();
         Class<?> thisEffectiveClass = this instanceof HibernateProxy ? ((HibernateProxy) this).getHibernateLazyInitializer().getPersistentClass() : this.getClass();
         if (thisEffectiveClass != oEffectiveClass) return false;
-        Job job = (Job) o;
-        return getId() != null && Objects.equals(getId(), job.getId());
+        Experience that = (Experience) o;
+        return getId() != null && Objects.equals(getId(), that.getId());
     }
 
     @Override

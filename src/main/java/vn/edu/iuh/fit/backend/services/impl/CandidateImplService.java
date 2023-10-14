@@ -1,9 +1,9 @@
-package vn.edu.iuh.fit.services.impl;
+package vn.edu.iuh.fit.backend.services.impl;
 
 import org.springframework.stereotype.Service;
-import vn.edu.iuh.fit.module.Candidate;
-import vn.edu.iuh.fit.repositories.CandidateRepository;
-import vn.edu.iuh.fit.services.CandidateService;
+import vn.edu.iuh.fit.backend.repositories.CandidateRepository;
+import vn.edu.iuh.fit.backend.module.Candidate;
+import vn.edu.iuh.fit.backend.services.CandidateService;
 
 import java.util.List;
 import java.util.Optional;

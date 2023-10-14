@@ -1,4 +1,4 @@
-package vn.edu.iuh.fit.module;
+package vn.edu.iuh.fit.backend.module;
 
 import jakarta.persistence.*;
 import lombok.*;
@@ -13,25 +13,25 @@ import java.util.Objects;
 @ToString
 @RequiredArgsConstructor
 @Entity
-@Table(name = "skill")
-public class Skill {
+@Table(name = "job")
+public class Job {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "skill_id", nullable = false, length = 20)
+    @Column(name = "job_id", nullable = false, length = 20)
     @JdbcTypeCode(SqlTypes.BIGINT)
     private Long id;
 
-    @Column(name = "skill_description")
+    @Column(name = "job_description", length = 20000)
     @JdbcTypeCode(SqlTypes.NVARCHAR)
-    private String skillDescription;
+    private String jobDescription;
 
-    @Column(name = "skill_name")
+    @Column(name = "job_name")
     @JdbcTypeCode(SqlTypes.NVARCHAR)
-    private String skillName;
+    private String jobName;
 
-    @Column(name = "type", length = 4)
-    @JdbcTypeCode(SqlTypes.TINYINT)
-    private String type;
+    @ManyToOne
+    @JoinColumn(name = "comp_id")
+    private Company company;
 
     @Override
     public final boolean equals(Object o) {
@@ -40,8 +40,8 @@ public class Skill {
         Class<?> oEffectiveClass = o instanceof HibernateProxy ? ((HibernateProxy) o).getHibernateLazyInitializer().getPersistentClass() : o.getClass();
         Class<?> thisEffectiveClass = this instanceof HibernateProxy ? ((HibernateProxy) this).getHibernateLazyInitializer().getPersistentClass() : this.getClass();
         if (thisEffectiveClass != oEffectiveClass) return false;
-        Skill skill = (Skill) o;
-        return getId() != null && Objects.equals(getId(), skill.getId());
+        Job job = (Job) o;
+        return getId() != null && Objects.equals(getId(), job.getId());
     }
 
     @Override

@@ -1,4 +1,4 @@
-package vn.edu.iuh.fit.module;
+package vn.edu.iuh.fit.backend.module;
 
 import jakarta.persistence.*;
 import lombok.*;
@@ -7,13 +7,17 @@ import org.hibernate.proxy.HibernateProxy;
 import org.hibernate.type.SqlTypes;
 
 import java.sql.Date;
+import java.time.LocalDate;
+import java.util.LinkedHashSet;
+import java.util.List;
 import java.util.Objects;
 import java.util.Set;
 
 @Getter
 @Setter
+@NoArgsConstructor
+@AllArgsConstructor
 @ToString
-@RequiredArgsConstructor
 @Entity
 public class Candidate {
     @Id
@@ -40,7 +44,12 @@ public class Candidate {
 
     @OneToMany(mappedBy = "candidate")
     @ToString.Exclude
-    private Set<Address> addresses ;
+    private Set<Address> addresses = new LinkedHashSet<>();
+
+    @ToString.Exclude
+    @OneToMany(mappedBy = "candidate", orphanRemoval = true)
+    private List<Experience> experiences ;
+
 
     @Override
     public final boolean equals(Object o) {
