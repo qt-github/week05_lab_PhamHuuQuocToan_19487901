@@ -1,4 +1,4 @@
-package vn.edu.iuh.fit.week05_lab_phamhuuquoctoan_19487901.module;
+package vn.edu.iuh.fit.module;
 
 import jakarta.persistence.*;
 import lombok.*;
@@ -6,32 +6,41 @@ import org.hibernate.annotations.JdbcTypeCode;
 import org.hibernate.proxy.HibernateProxy;
 import org.hibernate.type.SqlTypes;
 
+import java.sql.Date;
 import java.util.Objects;
+import java.util.Set;
 
 @Getter
 @Setter
 @ToString
 @RequiredArgsConstructor
 @Entity
-@Table(name = "skill")
-public class Skill {
+public class Candidate {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "skill_id", nullable = false, length = 20)
+    @Column(name = "candidate_id", nullable = false, length = 20)
     @JdbcTypeCode(SqlTypes.BIGINT)
     private Long id;
 
-    @Column(name = "skill_description")
-    @JdbcTypeCode(SqlTypes.NVARCHAR)
-    private String skillDescription;
+    @Column(name = "dob")
+    @JdbcTypeCode(SqlTypes.DATE)
+    private Date dob;
 
-    @Column(name = "skill_name")
-    @JdbcTypeCode(SqlTypes.NVARCHAR)
-    private String skillName;
+    @Column(name = "email")
+    @JdbcTypeCode(SqlTypes.VARCHAR)
+    private String email;
 
-    @Column(name = "type", length = 4)
-    @JdbcTypeCode(SqlTypes.TINYINT)
-    private String type;
+    @Column(name = "full_name")
+    @JdbcTypeCode(SqlTypes.NVARCHAR)
+    private String fullName;
+
+    @Column(name = "phone", length = 15)
+    @JdbcTypeCode(SqlTypes.VARCHAR)
+    private String phone;
+
+    @OneToMany(mappedBy = "candidate")
+    @ToString.Exclude
+    private Set<Address> addresses ;
 
     @Override
     public final boolean equals(Object o) {
@@ -40,8 +49,8 @@ public class Skill {
         Class<?> oEffectiveClass = o instanceof HibernateProxy ? ((HibernateProxy) o).getHibernateLazyInitializer().getPersistentClass() : o.getClass();
         Class<?> thisEffectiveClass = this instanceof HibernateProxy ? ((HibernateProxy) this).getHibernateLazyInitializer().getPersistentClass() : this.getClass();
         if (thisEffectiveClass != oEffectiveClass) return false;
-        Skill skill = (Skill) o;
-        return getId() != null && Objects.equals(getId(), skill.getId());
+        Candidate candidate = (Candidate) o;
+        return getId() != null && Objects.equals(getId(), candidate.getId());
     }
 
     @Override

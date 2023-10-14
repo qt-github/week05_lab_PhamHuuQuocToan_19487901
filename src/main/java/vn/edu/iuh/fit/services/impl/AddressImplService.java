@@ -1,12 +1,14 @@
-package vn.edu.iuh.fit.week05_lab_phamhuuquoctoan_19487901.services.impl;
+package vn.edu.iuh.fit.services.impl;
 
-import vn.edu.iuh.fit.week05_lab_phamhuuquoctoan_19487901.module.Address;
-import vn.edu.iuh.fit.week05_lab_phamhuuquoctoan_19487901.repositories.AddressRepository;
-import vn.edu.iuh.fit.week05_lab_phamhuuquoctoan_19487901.services.AddressService;
+import org.springframework.stereotype.Service;
+import vn.edu.iuh.fit.module.Address;
+import vn.edu.iuh.fit.repositories.AddressRepository;
+import vn.edu.iuh.fit.services.AddressService;
 
 import java.util.List;
 import java.util.Optional;
 
+@Service
 public class AddressImplService implements AddressService {
     private final AddressRepository repo;
 

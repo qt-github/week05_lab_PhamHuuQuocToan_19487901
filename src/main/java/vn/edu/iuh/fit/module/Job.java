@@ -1,4 +1,4 @@
-package vn.edu.iuh.fit.week05_lab_phamhuuquoctoan_19487901.module;
+package vn.edu.iuh.fit.module;
 
 import jakarta.persistence.*;
 import lombok.*;
@@ -7,45 +7,31 @@ import org.hibernate.proxy.HibernateProxy;
 import org.hibernate.type.SqlTypes;
 
 import java.util.Objects;
-import java.util.Set;
 
-@AllArgsConstructor
-@NoArgsConstructor
 @Getter
 @Setter
 @ToString
+@RequiredArgsConstructor
 @Entity
-@Table(name = "company")
-public class Company {
+@Table(name = "job")
+public class Job {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "comp_id", nullable = false, length = 20)
+    @Column(name = "job_id", nullable = false, length = 20)
     @JdbcTypeCode(SqlTypes.BIGINT)
     private Long id;
 
-    @Column(name = "about", length = 2000)
+    @Column(name = "job_description", length = 20000)
     @JdbcTypeCode(SqlTypes.NVARCHAR)
-    private String about;
+    private String jobDescription;
 
-    @Column(name = "email")
-    @JdbcTypeCode(SqlTypes.VARCHAR)
-    private String email;
-
-    @Column(name = "comp_name")
+    @Column(name = "job_name")
     @JdbcTypeCode(SqlTypes.NVARCHAR)
-    private String compName;
+    private String jobName;
 
-    @Column(name = "phone")
-    @JdbcTypeCode(SqlTypes.VARCHAR)
-    private String phone;
-
-    @Column(name = "web_url")
-    @JdbcTypeCode(SqlTypes.VARCHAR)
-    private String webUrl;
-
-    @OneToMany(mappedBy = "company")
-    @ToString.Exclude
-    private Set<Address> addresses;
+    @ManyToOne
+    @JoinColumn(name = "comp_id")
+    private Company company;
 
     @Override
     public final boolean equals(Object o) {
@@ -54,8 +40,8 @@ public class Company {
         Class<?> oEffectiveClass = o instanceof HibernateProxy ? ((HibernateProxy) o).getHibernateLazyInitializer().getPersistentClass() : o.getClass();
         Class<?> thisEffectiveClass = this instanceof HibernateProxy ? ((HibernateProxy) this).getHibernateLazyInitializer().getPersistentClass() : this.getClass();
         if (thisEffectiveClass != oEffectiveClass) return false;
-        Company company = (Company) o;
-        return getId() != null && Objects.equals(getId(), company.getId());
+        Job job = (Job) o;
+        return getId() != null && Objects.equals(getId(), job.getId());
     }
 
     @Override

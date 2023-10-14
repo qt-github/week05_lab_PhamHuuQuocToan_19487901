@@ -1,12 +1,14 @@
-package vn.edu.iuh.fit.week05_lab_phamhuuquoctoan_19487901.services.impl;
+package vn.edu.iuh.fit.services.impl;
 
-import vn.edu.iuh.fit.week05_lab_phamhuuquoctoan_19487901.module.Skill;
-import vn.edu.iuh.fit.week05_lab_phamhuuquoctoan_19487901.repositories.SkillRepository;
-import vn.edu.iuh.fit.week05_lab_phamhuuquoctoan_19487901.services.SkillService;
+import org.springframework.stereotype.Service;
+import vn.edu.iuh.fit.module.Skill;
+import vn.edu.iuh.fit.repositories.SkillRepository;
+import vn.edu.iuh.fit.services.SkillService;
 
 import java.util.List;
 import java.util.Optional;
 
+@Service
 public class SkillImplService implements SkillService {
     private final SkillRepository repo;
 

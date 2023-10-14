@@ -1,16 +1,18 @@
-package vn.edu.iuh.fit.week05_lab_phamhuuquoctoan_19487901.services.impl;
+package vn.edu.iuh.fit.services.impl;
 
-import vn.edu.iuh.fit.week05_lab_phamhuuquoctoan_19487901.module.Candidate;
-import vn.edu.iuh.fit.week05_lab_phamhuuquoctoan_19487901.repositories.CandidateRepository;
-import vn.edu.iuh.fit.week05_lab_phamhuuquoctoan_19487901.services.CandidateService;
+import org.springframework.stereotype.Service;
+import vn.edu.iuh.fit.module.Candidate;
+import vn.edu.iuh.fit.repositories.CandidateRepository;
+import vn.edu.iuh.fit.services.CandidateService;
 
 import java.util.List;
 import java.util.Optional;
 
-public class CandidateImpl implements CandidateService {
+@Service
+public class CandidateImplService implements CandidateService {
     private final CandidateRepository repo;
 
-    public CandidateImpl(CandidateRepository repo) {
+    public CandidateImplService(CandidateRepository repo) {
         this.repo = repo;
     }
 

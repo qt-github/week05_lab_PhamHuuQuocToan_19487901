@@ -1,6 +1,6 @@
-package vn.edu.iuh.fit.week05_lab_phamhuuquoctoan_19487901.services;
+package vn.edu.iuh.fit.services;
 
-import vn.edu.iuh.fit.week05_lab_phamhuuquoctoan_19487901.module.Job;
+import vn.edu.iuh.fit.module.Job;
 
 import java.util.List;
 import java.util.Optional;

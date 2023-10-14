@@ -1,12 +1,14 @@
-package vn.edu.iuh.fit.week05_lab_phamhuuquoctoan_19487901.services.impl;
+package vn.edu.iuh.fit.services.impl;
 
-import vn.edu.iuh.fit.week05_lab_phamhuuquoctoan_19487901.module.Job;
-import vn.edu.iuh.fit.week05_lab_phamhuuquoctoan_19487901.repositories.JobRepository;
-import vn.edu.iuh.fit.week05_lab_phamhuuquoctoan_19487901.services.JobService;
+import org.springframework.stereotype.Service;
+import vn.edu.iuh.fit.module.Job;
+import vn.edu.iuh.fit.repositories.JobRepository;
+import vn.edu.iuh.fit.services.JobService;
 
 import java.util.List;
 import java.util.Optional;
 
+@Service
 public class JobImplService implements JobService {
     private final JobRepository repo;
 

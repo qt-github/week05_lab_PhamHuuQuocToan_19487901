@@ -1,4 +1,4 @@
-package vn.edu.iuh.fit.week05_lab_phamhuuquoctoan_19487901.module;
+package vn.edu.iuh.fit.module;
 
 import jakarta.persistence.*;
 import lombok.*;
@@ -11,44 +11,27 @@ import java.util.Objects;
 @Getter
 @Setter
 @ToString
-@NoArgsConstructor
-@AllArgsConstructor
+@RequiredArgsConstructor
 @Entity
-@Table(name = "address")
-public class Address {
+@Table(name = "skill")
+public class Skill {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id", nullable = false, length = 20)
+    @Column(name = "skill_id", nullable = false, length = 20)
     @JdbcTypeCode(SqlTypes.BIGINT)
     private Long id;
 
-    @Column(name = "street", length = 150)
+    @Column(name = "skill_description")
     @JdbcTypeCode(SqlTypes.NVARCHAR)
-    private String street;
+    private String skillDescription;
 
-    @Column(name = "city", length = 50)
+    @Column(name = "skill_name")
     @JdbcTypeCode(SqlTypes.NVARCHAR)
-    private String city;
+    private String skillName;
 
-    @Column(name = "country", length = 6)
-    @JdbcTypeCode(SqlTypes.SMALLINT)
-    private int country;
-
-    @Column(name = "number", length = 20)
-    @JdbcTypeCode(SqlTypes.VARCHAR)
-    private String number;
-
-    @Column(name = "zipcode", length = 7)
-    @JdbcTypeCode(SqlTypes.VARCHAR)
-    private String zipcode;
-
-    @ManyToOne
-    @JoinColumn(name = "candidate_id")
-    private Candidate candidate;
-
-    @ManyToOne
-    @JoinColumn(name = "comp_id")
-    private Company company;
+    @Column(name = "type", length = 4)
+    @JdbcTypeCode(SqlTypes.TINYINT)
+    private String type;
 
     @Override
     public final boolean equals(Object o) {
@@ -57,8 +40,8 @@ public class Address {
         Class<?> oEffectiveClass = o instanceof HibernateProxy ? ((HibernateProxy) o).getHibernateLazyInitializer().getPersistentClass() : o.getClass();
         Class<?> thisEffectiveClass = this instanceof HibernateProxy ? ((HibernateProxy) this).getHibernateLazyInitializer().getPersistentClass() : this.getClass();
         if (thisEffectiveClass != oEffectiveClass) return false;
-        Address address = (Address) o;
-        return getId() != null && Objects.equals(getId(), address.getId());
+        Skill skill = (Skill) o;
+        return getId() != null && Objects.equals(getId(), skill.getId());
     }
 
     @Override

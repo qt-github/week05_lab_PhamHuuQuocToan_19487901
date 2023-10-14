@@ -1,12 +1,14 @@
-package vn.edu.iuh.fit.week05_lab_phamhuuquoctoan_19487901.services.impl;
+package vn.edu.iuh.fit.services.impl;
 
-import vn.edu.iuh.fit.week05_lab_phamhuuquoctoan_19487901.module.Company;
-import vn.edu.iuh.fit.week05_lab_phamhuuquoctoan_19487901.repositories.CompanyRepository;
-import vn.edu.iuh.fit.week05_lab_phamhuuquoctoan_19487901.services.CompanyService;
+import org.springframework.stereotype.Service;
+import vn.edu.iuh.fit.module.Company;
+import vn.edu.iuh.fit.repositories.CompanyRepository;
+import vn.edu.iuh.fit.services.CompanyService;
 
 import java.util.List;
 import java.util.Optional;
 
+@Service
 public class CompanyImplService implements CompanyService {
     private final CompanyRepository repo;
 
