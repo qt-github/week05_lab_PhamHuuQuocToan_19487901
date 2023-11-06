@@ -33,6 +33,8 @@ dependencies {
     providedRuntime 'org.springframework.boot:spring-boot-starter-tomcat'
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
     implementation 'com.neovisionaries:nv-i18n:1.29'
+//    Database REST
+    implementation 'org.springframework.boot:spring-boot-starter-data-rest'
 }
 
 tasks.named('test') {

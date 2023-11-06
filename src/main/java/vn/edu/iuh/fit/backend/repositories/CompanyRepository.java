@@ -1,7 +1,7 @@
 package vn.edu.iuh.fit.backend.repositories;
 
 import org.springframework.data.jpa.repository.JpaRepository;
-import vn.edu.iuh.fit.backend.module.Company;
+import vn.edu.iuh.fit.frontend.models.Company;
 
 public interface CompanyRepository extends JpaRepository<Company, Long> {
 }

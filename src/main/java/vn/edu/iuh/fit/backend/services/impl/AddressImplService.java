@@ -1,7 +1,7 @@
 package vn.edu.iuh.fit.backend.services.impl;
 
 import org.springframework.stereotype.Service;
-import vn.edu.iuh.fit.backend.module.Address;
+import vn.edu.iuh.fit.frontend.models.Address;
 import vn.edu.iuh.fit.backend.repositories.AddressRepository;
 import vn.edu.iuh.fit.backend.services.AddressService;
 

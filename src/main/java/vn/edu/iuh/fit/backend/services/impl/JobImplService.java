@@ -1,7 +1,7 @@
 package vn.edu.iuh.fit.backend.services.impl;
 
 import org.springframework.stereotype.Service;
-import vn.edu.iuh.fit.backend.module.Job;
+import vn.edu.iuh.fit.frontend.models.Job;
 import vn.edu.iuh.fit.backend.repositories.JobRepository;
 import vn.edu.iuh.fit.backend.services.JobService;
 

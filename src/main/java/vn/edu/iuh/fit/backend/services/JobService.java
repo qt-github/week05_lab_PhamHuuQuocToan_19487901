@@ -1,6 +1,6 @@
 package vn.edu.iuh.fit.backend.services;
 
-import vn.edu.iuh.fit.backend.module.Job;
+import vn.edu.iuh.fit.frontend.models.Job;
 
 import java.util.List;
 import java.util.Optional;

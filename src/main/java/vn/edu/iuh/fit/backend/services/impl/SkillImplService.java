@@ -2,7 +2,7 @@ package vn.edu.iuh.fit.backend.services.impl;
 
 import org.springframework.stereotype.Service;
 import vn.edu.iuh.fit.backend.repositories.SkillRepository;
-import vn.edu.iuh.fit.backend.module.Skill;
+import vn.edu.iuh.fit.frontend.models.Skill;
 import vn.edu.iuh.fit.backend.services.SkillService;
 
 import java.util.List;

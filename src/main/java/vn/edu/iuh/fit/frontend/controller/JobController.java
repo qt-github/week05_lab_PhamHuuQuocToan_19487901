@@ -1,4 +1,4 @@
-package vn.edu.iuh.fit.backend.controller;
+package vn.edu.iuh.fit.frontend.controller;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
