@@ -29,20 +29,20 @@
     </tr>
     </thead>
     <tbody>
-    <tr th:each="candidate, iStat : ${candidatePage.content}">
-        <td th:text="${candidate.id}"></td>
-        <td th:text="${candidate.fullName}"></td>
-        <td th:text="${candidate.dob}"></td>
-        <td th:text="${candidate.address}"></td>
-        <td th:text="${candidate.phone}"></td>
-        <td th:text="${candidate.email}"></td>
-        <td><a th:href="@{show-edit-form/{id}(id=${candidate.id})}">Edit</a></td>
-        <td><a th:href="@{/delete/{id}(id=${candidate.id})}">Delete</a></td>
-    </tr>
+        <tr th:each="candidate, iStat : ${candidatePage.content}">
+            <td th:text="${candidate.id}"></td>
+            <td th:text="${candidate.fullName}"></td>
+            <td th:text="${candidate.dob}"></td>
+            <td th:text="${candidate.address}"></td>
+            <td th:text="${candidate.phone}"></td>
+            <td th:text="${candidate.email}"></td>
+            <td><a th:href="@{/candidates/show-edit-form/{id}(id=${candidate.id})}">Edit</a></td>
+            <td><a th:href="@{/candidates/delete/{id}(id=${candidate.id})}">Delete</a></td>
+        </tr>
     </tbody>
 </table>
 <div class="inline" th:if="${candidatePage.totalPages > 0}" th:each="pageNumber : ${pageNumbers}">
-    <a th:href="@{/candidates/list-paging(size=${candidatePage.size}, page=${pageNumber})}"
+    <a th:href="@{/candidates(size=${candidatePage.size}, page=${pageNumber})}"
        th:text="${pageNumber}"
        th:class="${pageNumber==candidatePage.number + 1} ? active"></a>
 </div>

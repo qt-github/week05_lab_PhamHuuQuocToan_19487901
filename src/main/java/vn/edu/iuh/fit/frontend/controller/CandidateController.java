@@ -79,7 +79,7 @@ public class CandidateController {
         addressRepository.save(address);
         candidate.setAddress(address);
         candidateRepository.save(candidate);
-        return "redirect:/candidates/add";
+        return "redirect:/candidates/list-paging";
     }
 
     @GetMapping("/show-edit-form/{id}")
@@ -95,14 +95,23 @@ public class CandidateController {
         }
         return modelAndView;
     }
+
+    // TODO: update
     @PostMapping("/update")
     public String update(
             @ModelAttribute("candidate") Candidate candidate,
             @ModelAttribute("address") Address address,
             BindingResult result, Model model) {
         addressRepository.save(address);
+        candidate.setAddress(address);
         candidateRepository.save(candidate);
+        return "redirect:/candidates/list-paging";
+    }
 
-        return "redirect:/candidates/update";
+    //Todo: delete
+    @GetMapping("/delete/{id}")
+    public String delete(@PathVariable("id") long id) {
+        candidateRepository.deleteById(id);
+        return "redirect:/candidates/list-paging";
     }
 }
