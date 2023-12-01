@@ -60,8 +60,8 @@ public class JobImplService implements JobService {
         repo.save(job);
     }
 
-    public Optional<Job> findById(Long jobId) {
-        return repo.findById(jobId);
+    public Job findById(Long jobId) {
+        return repo.findById(jobId).orElseThrow(() -> new RuntimeException("Job not found"));
     }
 
     public void deleteById(Long id) {

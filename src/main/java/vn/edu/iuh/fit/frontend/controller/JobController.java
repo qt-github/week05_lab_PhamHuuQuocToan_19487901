@@ -105,9 +105,9 @@ public class JobController {
     @RequestMapping("/show-edit-form/{jobId}")
     public ModelAndView showEditForm(@PathVariable("jobId") Long jobId){
         ModelAndView modelAndView = new ModelAndView("company/jobs/update");
-        Optional<Job> opt = jobImplService.findById(jobId);
-        if (opt.isPresent()){
-            Job job = opt.get();
+        Job opt = jobImplService.findById(jobId);
+        if (opt != null){
+            Job job = opt;
             modelAndView.addObject("job", job);
             modelAndView.addObject("company", job.getCompany());
             modelAndView.addObject("jobSkills", job.getJobSkills());

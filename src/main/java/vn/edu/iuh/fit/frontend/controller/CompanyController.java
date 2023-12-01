@@ -51,13 +51,12 @@ public class CompanyController {
 
     @GetMapping("/detailsJob/{jobId}")
     public String detailsJob(Model model, @PathVariable Long jobId) {
-        Optional<Job> job = Optional.ofNullable(jobService.findById(jobId)
-                .orElseThrow(() -> new RuntimeException("Company not found")));
+        Job job = jobService.findById(jobId);
         model.addAttribute("job", job);
         List<Candidate> recommendedCandidates = jobService.recommendCandidatesForJob(jobId);
         model.addAttribute("recommendedCandidates", recommendedCandidates);
 
-        return "company/jobs/details" + jobId;
+        return "company/jobs/details";
     }
 
     @GetMapping("/addJob/{companyId}")
@@ -151,25 +150,17 @@ public class CompanyController {
 
             Model model) {
 
-        Optional<Job> job = Optional.ofNullable(
-                jobService
-                        .findById(jobId)
-                        .orElseThrow(() ->
-                                new IllegalArgumentException(
-                                        "Invalid job posting Id:" + jobId
-                                )
-                        )
-        );
-        jobSkill.setJob(job.get());
+        Job job = jobService.findById(jobId);
+        jobSkill.setJob(job);
 
-        Optional<Skill> skill =Optional.ofNullable(
+        Optional<Skill> skill = Optional.ofNullable(
                 skillService
                         .getSkillById(skillId)
-                .orElseThrow(() ->
-                        new IllegalArgumentException(
-                                "Invalid skill Id:" + skillId
+                        .orElseThrow(() ->
+                                new IllegalArgumentException(
+                                        "Invalid skill Id:" + skillId
+                                )
                         )
-                )
         );
         jobSkill.setSkill(skill.get());
 
@@ -177,20 +168,20 @@ public class CompanyController {
 
 
         jobSkillService.save(jobSkill);
-        return "redirect:/company/detailsJob/" + job.get().getId();
+        return "redirect:/company/detailsJob/" + job.getId();
     }
 
     @PostMapping("/send-invitation")
-public String sendInvitation(@RequestParam("id") Long jobId, @RequestParam("email") String email,
-                             Model model) {
-    try {
-        companyService.sendSimpleMessage(email);
-    } catch (DataIntegrityViolationException e) {
-        // Handle the exception here, e.g., by adding an error message to the model
-        model.addAttribute("error", "Email already exists: " + email);
+    public String sendInvitation(@RequestParam("id") Long jobId, @RequestParam("email") String email,
+                                 Model model) {
+        try {
+            companyService.sendSimpleMessage(email);
+        } catch (DataIntegrityViolationException e) {
+            // Handle the exception here, e.g., by adding an error message to the model
+            model.addAttribute("error", "Email already exists: " + email);
+            return "redirect:/company/detailsJob/" + jobId;
+        }
+
         return "redirect:/company/detailsJob/" + jobId;
     }
-
-    return "redirect:/company/detailsJob/" + jobId;
-}
 }
