@@ -122,7 +122,7 @@ public class CandidateController {
 
     @GetMapping("/details/{canId}")
     public String detailsCan(Model model, @PathVariable Long canId) {
-        Optional<Candidate> candidate = candidateService.getCandidateById(canId);
+        Candidate candidate = candidateService.getCandidateById(canId);
         List<Job> recommendedJobs = jobService.recommendJobsForCandidate(canId);
         List<Skill> suggestedSkills = skillService.suggestSkillsForCandidate(canId);
         if (!recommendedJobs.isEmpty()) {
@@ -163,8 +163,8 @@ public class CandidateController {
 
             Model model) {
 
-        Optional<Candidate> candidate = candidateService.getCandidateById(canId);
-        candidateSkill.setCandidate(candidate.get());
+        Candidate candidate = candidateService.getCandidateById(canId);
+        candidateSkill.setCandidate(candidate);
 
         Skill skill = skillService.getSkillById(skillId)
                 .orElseThrow(() -> new IllegalArgumentException("Invalid skill Id:" + skillId));
@@ -174,7 +174,7 @@ public class CandidateController {
 
 
         candidateSkillService.save(candidateSkill);
-        return "redirect:/can/details/" + candidate.get().getId();
+        return "redirect:/candidates/details/" + candidate.getId();
     }
 
     @GetMapping("/show-add-exp/{canId}")
@@ -188,11 +188,11 @@ public class CandidateController {
     }
 
     @PostMapping("/addExp")
-    public String addExperience(@ModelAttribute("experienceForm") Experience experience,            @RequestParam("canId") long canId
+    public String addExperience(@ModelAttribute("experienceForm") Experience experience,@RequestParam("canId") long canId
     ) {
-        Optional<Candidate> candidate= candidateService.getCandidateById(canId);
-        experience.setCandidate(candidate.get());
+        Candidate candidate= candidateService.getCandidateById(canId);
+        experience.setCandidate(candidate);
         experienceService.save(experience);
-        return "redirect:/can/details/" + canId;
+        return "redirect:/candidates/details/" + canId;
     }
 }

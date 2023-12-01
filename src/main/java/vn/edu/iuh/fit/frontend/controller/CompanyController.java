@@ -1,5 +1,6 @@
 package vn.edu.iuh.fit.frontend.controller;
 
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -56,7 +57,7 @@ public class CompanyController {
         List<Candidate> recommendedCandidates = jobService.recommendCandidatesForJob(jobId);
         model.addAttribute("recommendedCandidates", recommendedCandidates);
 
-        return "company/jobs/details";
+        return "company/jobs/details" + jobId;
     }
 
     @GetMapping("/addJob/{companyId}")
@@ -180,11 +181,16 @@ public class CompanyController {
     }
 
     @PostMapping("/send-invitation")
-    public String sendInvitation(@RequestParam("id") Long jobId, @RequestParam("email") String email,
-                                 Model model) {
+public String sendInvitation(@RequestParam("id") Long jobId, @RequestParam("email") String email,
+                             Model model) {
+    try {
         companyService.sendSimpleMessage(email);
-
-
+    } catch (DataIntegrityViolationException e) {
+        // Handle the exception here, e.g., by adding an error message to the model
+        model.addAttribute("error", "Email already exists: " + email);
         return "redirect:/company/detailsJob/" + jobId;
     }
+
+    return "redirect:/company/detailsJob/" + jobId;
+}
 }

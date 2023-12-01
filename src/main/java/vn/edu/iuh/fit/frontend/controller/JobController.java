@@ -122,12 +122,12 @@ public class JobController {
     public String updateJob(
             @ModelAttribute("job") Job job,
             @ModelAttribute("company") Company company,
-            @ModelAttribute("jobSkills") List<JobSkill> jobSkills,
+            @ModelAttribute("jobSkills") JobSkill[] jobSkills,
             @ModelAttribute("address") Address address
     ){
         companyImplService.save(company);
         job.setCompany(company);
-        job.setJobSkills(jobSkills);
+        job.setJobSkills(List.of(jobSkills));
         jobImplService.save(job);
         return "redirect:/jobs/show-edit-form/"+job.getId();
     }

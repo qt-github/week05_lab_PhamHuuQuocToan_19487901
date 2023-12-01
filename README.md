@@ -51,3 +51,5 @@ Khi ứng dụng đang chạy, bạn có thể truy cập giao diện web bằng
 ## Đóng góp
 
 Đóng góp được chào đón. Vui lòng phân nhánh kho lưu trữ và tạo yêu cầu kéo với những thay đổi của bạn.
+
+github: https://github.com/qt-github/week05_lab_PhamHuuQuocToan_19487901.git

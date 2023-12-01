@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+    <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
     <title>Company Details</title>
@@ -8,8 +8,8 @@
 </head>
 <body>
 
-<div class="container mt-3">
-    <a  class="btn btn-primary" href="http://localhost:8080/company/list">Back to List</a>
+<div class="container py-5">
+    <a  class="btn btn-outline-warning" href="http://localhost:8080/company/list">Back to List</a>
     <h2 class="mt-4 mb-4">Company Details</h2>
     <input type="hidden" name="companyId" th:value="${companyId}" />
     <div class="card">
@@ -30,6 +30,7 @@
     <table class="table">
         <thead>
         <tr>
+            <th>ID</th>
             <th>Name</th>
             <th>Title</th>
             <th>Details</th>
@@ -37,6 +38,7 @@
         </thead>
         <tbody>
         <tr th:each="job : ${company.jobs}">
+            <td th:text="${job.id}"></td>
             <td th:text="${job.name}"></td>
             <td th:text="${job.description}"></td>
             <td>

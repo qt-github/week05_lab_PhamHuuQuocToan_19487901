@@ -15,6 +15,7 @@
 </head>
 <body>
 <div class="container py-5">
+    <a class="btn btn-outline-warning" href="http://localhost:8080/">Back to Home</a>
     <h1 class="text-center mb-4">LIST CANDIDATES</h1>
     <div class="card">
         <div class="card-body">
@@ -40,6 +41,7 @@
                     <td th:text="${candidate.phone}"></td>
                     <td th:text="${candidate.email}"></td>
                     <td><a th:href="@{/candidates/show-edit-form/{id}(id=${candidate.id})}" class="btn btn-primary">Edit</a></td>
+                    <td><a class="btn btn-secondary" th:href="@{/candidates/details/{id}(id=${candidate.id})}">Details</a></td>
                     <td><a th:href="@{/candidates/delete/{id}(id=${candidate.id})}" class="btn btn-danger">Delete</a></td>
                 </tr>
                 </tbody>

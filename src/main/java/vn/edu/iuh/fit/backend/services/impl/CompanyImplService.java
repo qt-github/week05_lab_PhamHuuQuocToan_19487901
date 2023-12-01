@@ -2,12 +2,11 @@ package vn.edu.iuh.fit.backend.services.impl;
 
 import jakarta.mail.MessagingException;
 import jakarta.mail.internet.MimeMessage;
-import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.stereotype.Component;
-import vn.edu.iuh.fit.backend.repositories.CompanyRepository;
 import vn.edu.iuh.fit.backend.models.Company;
+import vn.edu.iuh.fit.backend.repositories.CompanyRepository;
 import vn.edu.iuh.fit.backend.services.CompanyService;
 
 import java.util.List;
@@ -17,10 +16,11 @@ import java.util.Optional;
 public class CompanyImplService implements CompanyService {
     private final CompanyRepository repo;
 
-    private JavaMailSender emailSender;
+    private final JavaMailSender emailSender;
 
-    public CompanyImplService(CompanyRepository repo) {
+    public CompanyImplService(CompanyRepository repo, JavaMailSender emailSender) {
         this.repo = repo;
+        this.emailSender = emailSender;
     }
 
     @Override

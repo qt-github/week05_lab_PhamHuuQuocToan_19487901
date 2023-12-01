@@ -12,5 +12,5 @@ public interface CandidateService {
     Page<Candidate> findAllPaginated(int page, int size, String sortField, String sortDir);
     Page<Candidate> findPaginated(Pageable pageable);
     Candidate updateCandidate(Long id, Candidate updatedCandidate);
-    Optional<Candidate> getCandidateById(Long id);
+    Candidate  getCandidateById(Long id);
 }

@@ -8,8 +8,8 @@
 </head>
 <body>
 
-<div class="container mt-3">
-    <a  class="btn btn-primary" href="http://localhost:8080/company/list">Back to List</a>
+<div class="container py-5">
+    <a class="btn btn-primary" href="http://localhost:8080/company/list">Back to List</a>
     <h2 class="mt-4 mb-4">Job Details</h2>
     <div class="card">
         <div class="card-body">
@@ -69,8 +69,8 @@
             </td>
             <td>
                 <form th:action="@{/company/send-invitation}" method="post">
-                    <input type="hidden" name="id" th:value="${jobId}" />
-                    <input type="hidden" name="email" th:value="${candidate.email}" />
+                    <input type="hidden" name="id" th:value="${jobId}"/>
+                    <input type="hidden" name="email" th:value="${candidate.email}"/>
                     <button type="submit" class="btn btn-primary">Send mail</button>
                 </form>
             </td>

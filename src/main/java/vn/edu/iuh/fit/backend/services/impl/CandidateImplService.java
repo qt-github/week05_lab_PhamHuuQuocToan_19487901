@@ -43,8 +43,8 @@ public class CandidateImplService implements CandidateService {
         return new PageImpl<>(list, PageRequest.of(currentPage, pageSize), candidates.size());
     }
 
-    public Optional<Candidate> getCandidateById(Long id) {
-        return repo.findById(id);
+    public Candidate getCandidateById(Long id) {
+        return repo.findById(id).orElse(null);
     }
 
     public Candidate updateCandidate(Long id, Candidate updatedCandidate) {

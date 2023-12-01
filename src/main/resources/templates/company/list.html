@@ -7,8 +7,8 @@
           integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
 </head>
 <body>
-<div class="container mt-5">
-    <a  class="btn btn-primary" href="http://localhost:8080/">Back to Home</a>
+<div class="container py-5">
+    <a  class="btn btn-outline-warning" href="http://localhost:8080/">Back to Home</a>
     <h1 class="text-center">Company List</h1>
     <table class="table table-striped">
         <thead>
@@ -25,7 +25,7 @@
             <td th:text="${company.name}"></td>
             <td th:text="${company.address}"></td>
             <td>
-                <a th:href="@{/company/details/{companyId}(companyId=${company.id})}" class="btn btn-primary">Details</a>
+                <a th:href="@{/company/details/{companyId}(companyId=${company.id})}" class="btn btn-success">Details</a>
             </td>
         </tr>
         </tbody>

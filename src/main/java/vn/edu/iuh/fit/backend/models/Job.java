@@ -4,6 +4,7 @@ import jakarta.persistence.*;
 import lombok.*;
 import org.hibernate.proxy.HibernateProxy;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
@@ -29,7 +30,7 @@ public class Job {
 
     @OneToMany(mappedBy = "job")
     @ToString.Exclude
-    private List<JobSkill> jobSkills;
+    List<JobSkill> jobSkills = new ArrayList<>();
 
 
     @Override
