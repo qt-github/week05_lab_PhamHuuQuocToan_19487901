@@ -1,29 +1,29 @@
-package vn.edu.iuh.fit.frontend.ids;
+package vn.edu.iuh.fit.backend.ids;
 
-import vn.edu.iuh.fit.frontend.models.Candidate;
-import vn.edu.iuh.fit.frontend.models.Skill;
+import vn.edu.iuh.fit.backend.models.Job;
+import vn.edu.iuh.fit.backend.models.Skill;
 
 import java.io.Serializable;
 
-public class CandidateSkillID implements Serializable {
+public class JobSkillID implements Serializable {
     private Skill skill;
-    private Candidate candidate;
+    private Job job;
 
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
 
-        CandidateSkillID that = (CandidateSkillID) o;
+        JobSkillID that = (JobSkillID) o;
 
         if (!skill.equals(that.skill)) return false;
-        return candidate.equals(that.candidate);
+        return job.equals(that.job);
     }
 
     @Override
     public int hashCode() {
         int result = skill.hashCode();
-        result = 31 * result + candidate.hashCode();
+        result = 31 * result + job.hashCode();
         return result;
     }
 }

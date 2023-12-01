@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>List jobs</title>
+    <!--Boostrap 5-->
+    <!-- Latest compiled and minified CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        .inline {
+            display: inline-flex;
+            flex-direction: column;
+        }
+    </style>
+</head>
+<body>
+<a class="btn btn-outline-warning" href="http://localhost:8080/">Back to home</a>
+<h1 class="text-center">LIST JOBS</h1>
+<table class="table table-striped table-hover ">
+    <thead>
+    <tr>
+        <th>Id</th>
+        <th>Job Name</th>
+        <th>Job Description</th>
+        <th>Company Name</th>
+        <th>Company Address</th>
+        <th>Company Email</th>
+        <th>Company Phone</th>
+        <th>Company About</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="job : ${jobPage.content}">
+        <td th:text="${job.id}"></td>
+        <td th:text="${job.name}"></td>
+        <td th:text="${job.description}"></td>
+        <td th:text="${job.company.name}"></td>
+        <td th:text="${job.company.address}"></td>
+        <td th:text="${job.company.email}"></td>
+        <td th:text="${job.company.phone}"></td>
+        <td th:text="${job.company.about}"></td>
+        <td>
+            <a th:href="@{/jobs/show-edit-form/{jobId}(jobId=${job.id})}" class="btn btn-success">Edit</a>
+        </td>
+        <td>
+            <a th:href="@{/jobs/delete/{jobId}(jobId=${job.id})}" class="btn btn-danger">Delete</a>
+    </tr>
+    </tbody>
+</table>
+<div class="inline" th:if="${jobPage.totalPages > 0}" th:each="pageNumber : ${pageNumbers}">
+    <a th:href="@{/templates/company/jobs(size=${jobPage.size}, page=${pageNumber})}"
+       th:text="${pageNumber}"
+       th:class="${pageNumber==jobPage.number + 1} ? active"></a>
+</div>
+<br/>
+<a class="btn btn-primary " href="http://localhost:8080/jobs/show-add-form">Add Job</a>
+
+<!-- Latest compiled JavaScript -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

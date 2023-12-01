@@ -1,14 +1,8 @@
 package vn.edu.iuh.fit.backend.services;
 
-import vn.edu.iuh.fit.frontend.models.Address;
+import org.springframework.stereotype.Service;
 
-import java.util.List;
-import java.util.Optional;
-
+@Service
 public interface AddressService {
-    void save(Address address);
-    List<Address> findAll();
-    Optional<Address> findById(Long id);
-    boolean deleteById(Long id);
-    boolean update(Address address);
+
 }

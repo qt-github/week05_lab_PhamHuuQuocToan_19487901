@@ -1,4 +1,4 @@
-package vn.edu.iuh.fit.frontend.enums;
+package vn.edu.iuh.fit.backend.enums;
 
 public enum SkillLevel {
     MASTER(5),
@@ -7,9 +7,9 @@ public enum SkillLevel {
 
     ADVANCED(3),
 
-    IMTERMEDIATE(2),
+    INTERMEDIATE(2),
 
-    BEGINER(1);
+    BEGINNER(1);
 
     SkillLevel(int value) {
     }

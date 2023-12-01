@@ -1,7 +1,12 @@
 package vn.edu.iuh.fit.backend.repositories;
 
 import org.springframework.data.jpa.repository.JpaRepository;
-import vn.edu.iuh.fit.frontend.models.Job;
+import org.springframework.stereotype.Repository;
+import vn.edu.iuh.fit.backend.models.Job;
 
+import java.util.List;
+
+@Repository
 public interface JobRepository extends JpaRepository<Job, Long> {
+    List<Job> findByJobSkillsSkillIdIn(List<Long> skillIds);
 }

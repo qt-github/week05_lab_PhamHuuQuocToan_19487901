@@ -35,6 +35,9 @@ dependencies {
     implementation 'com.neovisionaries:nv-i18n:1.29'
 //    Database REST
     implementation 'org.springframework.boot:spring-boot-starter-data-rest'
+    implementation 'org.webjars:bootstrap:5.3.2'
+// Send mail
+    implementation 'org.springframework.boot:spring-boot-starter-mail:3.2.0'
 }
 
 tasks.named('test') {

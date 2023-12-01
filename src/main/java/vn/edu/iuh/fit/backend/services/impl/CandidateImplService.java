@@ -1,16 +1,16 @@
 package vn.edu.iuh.fit.backend.services.impl;
 
 import org.springframework.data.domain.*;
-import org.springframework.stereotype.Service;
+import org.springframework.stereotype.Component;
 import vn.edu.iuh.fit.backend.repositories.CandidateRepository;
-import vn.edu.iuh.fit.frontend.models.Candidate;
+import vn.edu.iuh.fit.backend.models.Candidate;
 import vn.edu.iuh.fit.backend.services.CandidateService;
 
 import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
 
-@Service
+@Component
 public class CandidateImplService implements CandidateService {
     private final CandidateRepository repo;
 
@@ -41,5 +41,22 @@ public class CandidateImplService implements CandidateService {
         }
 
         return new PageImpl<>(list, PageRequest.of(currentPage, pageSize), candidates.size());
+    }
+
+    public Optional<Candidate> getCandidateById(Long id) {
+        return repo.findById(id);
+    }
+
+    public Candidate updateCandidate(Long id, Candidate updatedCandidate) {
+        return repo.findById(id).map(existingCandidate -> {
+            existingCandidate.setFullName(updatedCandidate.getFullName());
+            existingCandidate.setCandidateSkills(updatedCandidate.getCandidateSkills());
+            existingCandidate.setAddress(updatedCandidate.getAddress());
+            existingCandidate.setDob(updatedCandidate.getDob());
+            existingCandidate.setEmail(updatedCandidate.getEmail());
+            existingCandidate.setExperiences(updatedCandidate.getExperiences());
+
+            return repo.save(existingCandidate);
+        }).orElse(null);
     }
 }

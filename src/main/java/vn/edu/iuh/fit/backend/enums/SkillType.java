@@ -1,4 +1,4 @@
-package vn.edu.iuh.fit.frontend.enums;
+package vn.edu.iuh.fit.backend.enums;
 
 public enum SkillType {
     UNSPECIFIC(0),

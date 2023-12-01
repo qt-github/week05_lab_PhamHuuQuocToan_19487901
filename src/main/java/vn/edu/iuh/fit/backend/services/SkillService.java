@@ -1,14 +1,15 @@
 package vn.edu.iuh.fit.backend.services;
 
-import vn.edu.iuh.fit.frontend.models.Skill;
+import org.springframework.stereotype.Service;
+import vn.edu.iuh.fit.backend.models.Skill;
 
 import java.util.List;
 import java.util.Optional;
 
+@Service
 public interface SkillService {
-    void save(Skill skill);
-    List<Skill> findAll();
-    Optional<Skill> findById(Long id);
-    boolean deleteById(Long id);
-    boolean update(Skill skill);
+Skill addSkill(Skill skill);
+List<Skill> getAllSkills();
+List<Skill> suggestSkillsForCandidate(Long candidateId);
+Optional<Skill> getSkillById(Long id);
 }
