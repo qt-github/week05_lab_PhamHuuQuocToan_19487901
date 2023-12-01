@@ -29,7 +29,7 @@
         <div class="form-group">
             <label for="skillType">Skill Level</label>
             <select class="form-control" id="skillType" name="skillLevel">
-                <option th:each="type : ${T(vn.edu.iuh.fit.www_lab05.backend.enums.SkillLevel).values()}"
+                <option th:each="type : ${T(vn.edu.iuh.fit.backend.enums.SkillLevel).values()}"
                         th:value="${type}"
                         th:text="${type}"></option>
             </select>
